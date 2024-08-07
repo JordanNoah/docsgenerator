@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        .bigtextoverflow{
+            width: 100%;white-space: normal; word-wrap: break-word;overflow: hidden;
+        }
+        .border-pdf{
+            border: 1px solid black!important;
+        }
+        .table-pdf{
+            width: 100%;
+        }
+        .tableHeader{
+            border: 1px solid black;
+        }
+        .border-right{
+            border-right: 1px solid black;
+        }
+        .border-bottom{
+            border-bottom: 1px solid black;
+        }
+        .border-left{
+            border-left: 1px solid black;
+        }
+        .border-top{
+            border-top: 1px solid black;
+        }
+        .none-border-left{
+            border-left: none!important;
+        }
+        .none-border-right{
+            border-right: none!important;
+        }
+        .none-border-top{
+            border-top: none!important;
+        }
+        .none-border-bottom{
+            border-bottom: none!important;
+        }
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid black;
+          text-align: left;
+          padding: 8px;
+        }
+        .d-flex{
+            display: flex;
+        }
+        .mb-2{
+            margin-bottom: 8px;
+        }
+        .justify-content-between{
+            justify-content: space-between;
+        }
+        .mr-2{
+            margin-right: 8px;
+        }
+        .px-2{
+            padding: 8px;
+        }
+    </style>
+</head>
+<body style="width: 100%;">
+    <div style="width: 100%;">
+        <div class="header d-flex mb-2">
+            <div style="flex: 1 1 auto; margin-right: 5px;">
+                <div class="mb-1">
+                    <img src="https://about.canva.com/wp-content/uploads/sites/8/2019/03/black.png" style="width: 100%; object-fit: contain; height: 160px;">
+                </div>
+                <div class="border-pdf rounded px-2">
+                    <div>SRI 2</div>
+                    <div>SRI</div>
+                    <div class="d-flex"><div><strong>Dirección Matriz:</strong></div><span class="bigtextoverflow">GFDGDFGDFGDF211313YGDFGDFGDFGDFxxxx</span></div>
+                    <div class="d-flex"><div><strong>Dirección Sucursal:</strong></div><div><span>&nbsp; Salinas No. 157 y Santiago</span></div></div>
+                    <div><strong>Contribuyente Especial Nro</strong> <strong>11245</strong></div>
+                    <div><strong>OBLIGADO A LLEVAR CONTABILIDAD</strong> <strong>SI</strong> </div>
+                </div>
+            </div>
+            <div style="flex: 1 1 auto;flex-flow: column;display: flex;">
+                <div class="border-pdf rounded px-2" style="height: 100%;">
+                    <div><strong>R.U.C.:</strong>1760013210001</div>
+                    <div><strong>FACTURA</strong></div>
+                    <div><strong>No.</strong>001-222-000001034</div>
+                    <div><strong>NÚMERO DE AUTORIZACIÓN</strong></div>
+                    <div><strong class="bigtextoverflow">1509201701176001321000110012220000010341234567811</strong></div>
+                    <div class="row">
+                        <div class="col-5">FECHA Y HORA DE AUTORIZACIÓN:</div>
+                        <div class="col-7">15/09/2017 08:45:49.000</div>
+                    </div>
+                    <div><strong>AMBIENTE:</strong> PRUEBAS </div>
+                    <div><strong>EMISIÓN:</strong> NORMAL </div>
+                    <div>
+                        CLAVE DE ACCESO:
+                        <div>
+                            <img id="barcode" style="max-width:100%;" max-width="100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="information row mb-2" style="width: 100%;">
+            <div class="col-12" style="width: 100%;">
+                <div class="border-pdf" style="width: 100%;">
+                    <div class="d-flex px-2">
+                        <div style="min-width: 50%;" >
+                            <div><strong>Razón Social / Nombres y Apellidos:</strong> <span>PRUEBAS SERVICIO DE RENTAS INTERNAS</span></div>
+                            <div><strong>Fecha Emisión:</strong> 15/09/2024</div>
+                            <div><strong>Dirección:</strong> Salinas y Santiago 123456789</div>
+                        </div>
+                        <div>
+                            <div><strong>Identificación:</strong> 1760013210001</div>
+                            <div><strong>Guía Remision:</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="body row mb-2">
+            <div class="tableIventory">
+                <table class="border-pdf table-pdf">
+                    <thead class="border-pdf">
+                        <tr class="border-bottom">
+                            <th>Cod. Principal</th>
+                            <th>Cod. Auxiliar</th>
+                            <th>Cant</th>
+                            <th>Descripción</th>
+                            <th>Detalle Adicional</th>
+                            <th>Precio Unitario</th>
+                            <th>Subsidio</th>
+                            <th>Precio Sin Subsidio</th>
+                            <th>Descuento</th>
+                            <th>Precio Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each detailsDto}}
+                            <tr>
+                                <td>{{mainCode}}</td>
+                                <td>{{auxiliaryCode}}</td>
+                                <td>{{quantity}}</td>
+                                <td>{{description}}</td>
+                                <td>{{description}}</td>
+                                <td>{{unitPrice}}</td>
+                                <td>{{priceWithoutSubsidy}}</td>
+                                <td>{{totalPriceWithoutTax}}</td>
+                                <td>{{discount}}</td>
+                                <td>{{total}}</td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="footer d-flex">
+            <div style="flex: 1 1 auto;" class="mr-2">
+                <div class="border-pdf px-2 mb-2" style="min-height: 400px;">
+                    <div>
+                        <strong>Información Adicional</strong>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">Dirección</div>
+                        <div class="col-7">Salinas y Santiago 123456789</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">Email</div>
+                        <div class="col-7">pruebassri@hotmail.com</div>
+                    </div>
+                </div>
+                <div>
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Forma de Pago</td>
+                            <td>Valor</td>
+                        </tr>
+                        <tr>
+                            <td>Sin utilizacion</td>
+                            <td>0.00</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div style="flex: 1 1 auto;align-content: space-between;display: flex;flex-flow: column;justify-content: space-between;">
+                <table class="table table-bordered mb-2">
+                    <tr>
+                        <td>SUBTOTAL 12%</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>SUBTOTAL 0%</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>SUBTOTAL NO OBJETO IVA</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>SUBTOTAL EXENTO IVA</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>SUBTOTAL SIN IMPUESTOS</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>DESCUENTO</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>ICE</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>IVA 12%</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>PROPINA</td>
+                        <td>0.00</td>
+                    </tr>
+                    <tr>
+                        <td>VALOR TOTAL</td>
+                        <td>0.00</td>
+                    </tr>
+                </table>
+                <div class="border-pdf px-2">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            VALOR TOTAL SIN SUBSIDIO
+                        </div>
+                        <div>
+                            0.00
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div>
+                                AHORRO POR SUBSIDIO
+                            </div>
+                            <div>
+                                (Incluye IVA cuando corresponda)
+                            </div>
+                        </div>
+                        <div>
+                            0.00
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<footer>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <script>
+        JsBarcode("#barcode", "1509201701176001321000110012220000010341234567811",{
+            height: 60,
+            width: 2,
+            fontSize:20
+        });
+    </script>
+</footer>
+</html>
