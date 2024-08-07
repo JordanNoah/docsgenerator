@@ -70,23 +70,25 @@
         }
     </style>
 </head>
-<body style="width: 100%;">
+<body>
     <div style="width: 100%;">
         <div class="header d-flex mb-2">
-            <div style="flex: 1 1 auto; margin-right: 5px;">
-                <div class="mb-1">
-                    <img src="https://about.canva.com/wp-content/uploads/sites/8/2019/03/black.png" style="width: 100%; object-fit: contain; height: 160px;">
-                </div>
-                <div class="border-pdf rounded px-2">
-                    <div>SRI 2</div>
-                    <div>SRI</div>
-                    <div class="d-flex"><div><strong>Dirección Matriz:</strong></div><span class="bigtextoverflow">GFDGDFGDFGDF211313YGDFGDFGDFGDFxxxx</span></div>
-                    <div class="d-flex"><div><strong>Dirección Sucursal:</strong></div><div><span>&nbsp; Salinas No. 157 y Santiago</span></div></div>
-                    <div><strong>Contribuyente Especial Nro</strong> <strong>11245</strong></div>
-                    <div><strong>OBLIGADO A LLEVAR CONTABILIDAD</strong> <strong>SI</strong> </div>
+            <div style="width: 50%;">
+                <div style="margin-right: 5px;">
+                    <div class="mb-1">
+                        <img src="https://about.canva.com/wp-content/uploads/sites/8/2019/03/black.png" style="width: 100%; object-fit: contain; height: 160px;">
+                    </div>
+                    <div class="border-pdf rounded px-2">
+                        <div>SRI 2</div>
+                        <div>SRI</div>
+                        <div class="d-flex"><div><strong>Dirección Matriz:</strong></div><span class="bigtextoverflow">GFDGDFGDFGDF211313YGDFGDFGDFGDFxxxx</span></div>
+                        <div class="d-flex"><div><strong>Dirección Sucursal:</strong></div><div><span>&nbsp; Salinas No. 157 y Santiago</span></div></div>
+                        <div><strong>Contribuyente Especial Nro</strong> <strong>11245</strong></div>
+                        <div><strong>OBLIGADO A LLEVAR CONTABILIDAD</strong> <strong>SI</strong> </div>
+                    </div>
                 </div>
             </div>
-            <div style="flex: 1 1 auto;flex-flow: column;display: flex;">
+            <div style="flex-flow: column;display: flex; width: 50%;">
                 <div class="border-pdf rounded px-2" style="height: 100%;">
                     <div><strong>R.U.C.:</strong>1760013210001</div>
                     <div><strong>FACTURA</strong></div>
@@ -109,35 +111,29 @@
             </div>
         </div>
         <div class="information row mb-2" style="width: 100%;">
-            <div class="col-12" style="width: 100%;">
-                <div class="border-pdf" style="width: 100%;">
-                    <div class="d-flex px-2">
-                        <div style="min-width: 50%;" >
-                            <div><strong>Razón Social / Nombres y Apellidos:</strong> <span>PRUEBAS SERVICIO DE RENTAS INTERNAS</span></div>
-                            <div><strong>Fecha Emisión:</strong> 15/09/2024</div>
-                            <div><strong>Dirección:</strong> Salinas y Santiago 123456789</div>
-                        </div>
-                        <div>
-                            <div><strong>Identificación:</strong> 1760013210001</div>
-                            <div><strong>Guía Remision:</strong></div>
-                        </div>
+            <div class="border-pdf">
+                <div class="d-flex px-2">
+                    <div style="min-width: 50%;" >
+                        <div><strong>Razón Social / Nombres y Apellidos:</strong> <span>PRUEBAS SERVICIO DE RENTAS INTERNAS</span></div>
+                        <div><strong>Fecha Emisión:</strong> 15/09/2024</div>
+                        <div><strong>Dirección:</strong> Salinas y Santiago 123456789</div>
+                    </div>
+                    <div>
+                        <div><strong>Identificación:</strong> 1760013210001</div>
+                        <div><strong>Guía Remision:</strong></div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="body row mb-2">
             <div class="tableIventory">
-                <table class="border-pdf table-pdf">
-                    <thead class="border-pdf">
-                        <tr class="border-bottom">
+                <table class="table-pdf">
+                    <thead>
+                        <tr>
                             <th>Cod. Principal</th>
-                            <th>Cod. Auxiliar</th>
                             <th>Cant</th>
                             <th>Descripción</th>
-                            <th>Detalle Adicional</th>
                             <th>Precio Unitario</th>
-                            <th>Subsidio</th>
-                            <th>Precio Sin Subsidio</th>
                             <th>Descuento</th>
                             <th>Precio Total</th>
                         </tr>
@@ -146,15 +142,11 @@
                         {{#each detailsDto}}
                             <tr>
                                 <td>{{mainCode}}</td>
-                                <td>{{auxiliaryCode}}</td>
                                 <td>{{quantity}}</td>
                                 <td>{{description}}</td>
-                                <td>{{description}}</td>
                                 <td>{{unitPrice}}</td>
-                                <td>{{priceWithoutSubsidy}}</td>
-                                <td>{{totalPriceWithoutTax}}</td>
                                 <td>{{discount}}</td>
-                                <td>{{total}}</td>
+                                <td>{{totalPriceWithoutTax}}</td>
                             </tr>
                         {{/each}}
                     </tbody>

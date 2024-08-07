@@ -63,23 +63,14 @@ export default class InvoiceDocDatasourceImpl extends InvoiceDocDatasource {
             // Opciones para la generación del PDF
             const options:htmlpdfnode.Options = { 
                 format: 'A4',
-                margin: {
-                    left: '20px',
-                    right: '20px',
-                    top: '20px',
-                    bottom: '20px'
-                },
-                preferCSSPageSize: true
+                path: `${dir}/${docname}.pdf`
             };
         
             // Crear un archivo PDF a partir del HTML
             const file = { content: html };
         
-            htmlpdfnode.generatePdf(file, options,(err, buffer) => {
-                console.log(err);
-                
-                fs.writeFileSync(`${dir}/${docname}.pdf`, buffer);
-            })
+            htmlpdfnode.generatePdf(file, options)
+            
             return new DocumentEntity("pdf", `http://localhost:3031/api/docs/pdf/${invoiceDto.uuid}/${docname}.pdf`);
         } catch (error) {
             console.log(error);
