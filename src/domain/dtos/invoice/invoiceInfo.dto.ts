@@ -41,7 +41,18 @@ export default class InvoiceInfoDto {
         public plate: string | null,
         public vatWithheldValue: number | null,
         public incomeTaxWithheldValue: number | null,
-        public payments: PaymentDto[]
+        public payments: PaymentDto[],
+        public totalTaxesCodeCero: string,
+        public totalTaxesCodeTwo: string,
+        public totalTaxesCodeThree: string,
+        public totalTaxesCodeFour: string,
+        public totalTaxesCodeFive: string,
+        public totalTaxesCodeSix: string,
+        public totalTaxesCodeSeven: string,
+        public totalTaxesCodeEight: string,
+        public totalTaxesCodeTen: string,
+        public totalIce: string,
+        public totalIrbpnr: string,
     ){}
     static create(object:{[key:string]:any}): [string?, InvoiceInfoDto?] {
         const {
@@ -82,7 +93,18 @@ export default class InvoiceInfoDto {
             plate,
             vatWithheldValue,
             incomeTaxWithheldValue,
-            payments
+            payments,
+            totalTaxesCodeCero,
+            totalTaxesCodeTwo,
+            totalTaxesCodeThree,
+            totalTaxesCodeFour,
+            totalTaxesCodeFive,
+            totalTaxesCodeSix,
+            totalTaxesCodeSeven,
+            totalTaxesCodeEight,
+            totalTaxesCodeTen,
+            totalIce,
+            totalIrbpnr,
         } = object
         return [
             undefined, 
@@ -124,7 +146,18 @@ export default class InvoiceInfoDto {
                 plate,
                 vatWithheldValue,
                 incomeTaxWithheldValue,
-                payments.map((payment: any) => PaymentDto.create(payment)[1]!)
+                payments.map((payment: any) => PaymentDto.create(payment)[1]!),
+                totalTaxesCodeCero,
+                totalTaxesCodeTwo,
+                totalTaxesCodeThree,
+                totalTaxesCodeFour,
+                totalTaxesCodeFive,
+                totalTaxesCodeSix,
+                totalTaxesCodeSeven,
+                totalTaxesCodeEight,
+                totalTaxesCodeTen,
+                totalIce,
+                totalIrbpnr
             )
         ]
     }
@@ -167,7 +200,18 @@ export default class InvoiceInfoDto {
             plate,
             vatWithheldValue,
             incomeTaxWithheldValue,
-            payments
+            payments,
+            totalTaxesCodeCero,
+            totalTaxesCodeTwo,
+            totalTaxesCodeThree,
+            totalTaxesCodeFour,
+            totalTaxesCodeFive,
+            totalTaxesCodeSix,
+            totalTaxesCodeSeven,
+            totalTaxesCodeEight,
+            totalTaxesCodeTen,
+            totalIce,
+            totalIrbpnr
         } = object
         
         if(!issueDate) return ['issueDate is required',undefined]
@@ -249,7 +293,18 @@ export default class InvoiceInfoDto {
                 plate,
                 vatWithheldValue,
                 incomeTaxWithheldValue,
-                payments.map((payment: any) => PaymentDto.save(payment)[1]!)
+                payments.map((payment: any) => PaymentDto.save(payment)[1]!),
+                totalTaxesCodeCero,
+                totalTaxesCodeTwo,
+                totalTaxesCodeThree,
+                totalTaxesCodeFour,
+                totalTaxesCodeFive,
+                totalTaxesCodeSix,
+                totalTaxesCodeSeven,
+                totalTaxesCodeEight,
+                totalTaxesCodeTen,
+                totalIce,
+                totalIrbpnr
             )
         ]
     }

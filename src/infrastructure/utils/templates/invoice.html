@@ -74,33 +74,45 @@
     <div style="width: 100%;">
         <div class="header d-flex mb-2">
             <div style="width: 50%;">
-                <div style="margin-right: 5px;">
-                    <div class="mb-1">
-                        <img src="https://about.canva.com/wp-content/uploads/sites/8/2019/03/black.png" style="width: 100%; object-fit: contain; height: 160px;">
+                <div style="margin-right: 5px; height: 100%;">
+                    <div class="mb-1" style="height: 50%;">
+                        <img src="https://about.canva.com/wp-content/uploads/sites/8/2019/03/black.png" style="width: 100%; object-fit: contain; height: 100%;">
                     </div>
-                    <div class="border-pdf rounded px-2">
-                        <div>SRI 2</div>
-                        <div>SRI</div>
-                        <div class="d-flex"><div><strong>Dirección Matriz:</strong></div><span class="bigtextoverflow">GFDGDFGDFGDF211313YGDFGDFGDFGDFxxxx</span></div>
-                        <div class="d-flex"><div><strong>Dirección Sucursal:</strong></div><div><span>&nbsp; Salinas No. 157 y Santiago</span></div></div>
-                        <div><strong>Contribuyente Especial Nro</strong> <strong>11245</strong></div>
-                        <div><strong>OBLIGADO A LLEVAR CONTABILIDAD</strong> <strong>SI</strong> </div>
+                    <div class="border-pdf rounded px-2" style="height: 45%;">
+                        <div class="d-flex"><div><strong>Dirección Matriz:</strong></div><span class="bigtextoverflow">{{financialInformationDto.headquartersAddress}}</span></div>
+                        <div class="d-flex"><div><strong>Dirección Sucursal:</strong></div><div><span>&nbsp; {{invoiceInfoDto.establishmentAddress}}</span></div></div>
+                        <div><strong>Contribuyente Especial Nro</strong> <strong>{{invoiceInfoDto.specialTaxpayer}}</strong></div>
+                        <div><strong>OBLIGADO A LLEVAR CONTABILIDAD</strong> <strong>{{invoiceInfoDto.accountingObligation}}</strong> </div>
                     </div>
                 </div>
             </div>
             <div style="flex-flow: column;display: flex; width: 50%;">
-                <div class="border-pdf rounded px-2" style="height: 100%;">
-                    <div><strong>R.U.C.:</strong>1760013210001</div>
-                    <div><strong>FACTURA</strong></div>
-                    <div><strong>No.</strong>001-222-000001034</div>
-                    <div><strong>NÚMERO DE AUTORIZACIÓN</strong></div>
-                    <div><strong class="bigtextoverflow">1509201701176001321000110012220000010341234567811</strong></div>
-                    <div class="row">
-                        <div class="col-5">FECHA Y HORA DE AUTORIZACIÓN:</div>
-                        <div class="col-7">15/09/2017 08:45:49.000</div>
+                <div class="border-pdf rounded px-2" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div><strong>R.U.C.:</strong>{{financialInformationDto.taxId}}</div>
+                        <div><strong>FACTURA</strong></div>
+                        <div><strong>No.</strong>{{financialInformationDto.establishment}}-{{financialInformationDto.emissionPoint}}-{{financialInformationDto.sequential}}</div>
+                        <div><strong>NÚMERO DE AUTORIZACIÓN</strong></div>
+                        <div><strong class="bigtextoverflow authNumber">{{financialInformationDto.accessKey}}</strong></div>
+                        <div class="row">
+                            <div class="col-5">FECHA Y HORA DE AUTORIZACIÓN:</div>
+                            <div class="col-7">{{approvalDate}}</div>
+                        </div>
+                        <div><strong>AMBIENTE:</strong>
+                            {{#if financialInformationDto.environment}}
+                                PRUEBAS
+                            {{else}}
+                                PRODUCCIÓN
+                            {{/if}}
+                        </div>
+                        <div><strong>EMISIÓN:</strong> 
+                            {{#if financialInformationDto.issueType}}
+                                NORMAL
+                            {{else}}
+                                CONTINGENCIA
+                            {{/if}}
+                        </div>
                     </div>
-                    <div><strong>AMBIENTE:</strong> PRUEBAS </div>
-                    <div><strong>EMISIÓN:</strong> NORMAL </div>
                     <div>
                         CLAVE DE ACCESO:
                         <div>
@@ -113,13 +125,13 @@
         <div class="information row mb-2" style="width: 100%;">
             <div class="border-pdf">
                 <div class="d-flex px-2">
-                    <div style="min-width: 50%;" >
-                        <div><strong>Razón Social / Nombres y Apellidos:</strong> <span>PRUEBAS SERVICIO DE RENTAS INTERNAS</span></div>
-                        <div><strong>Fecha Emisión:</strong> 15/09/2024</div>
-                        <div><strong>Dirección:</strong> Salinas y Santiago 123456789</div>
+                    <div style="min-width: 50%; margin-right: 5px;">
+                        <div><strong>Razón Social / Nombres y Apellidos:</strong> <span>{{invoiceInfoDto.buyerBusinessName}}</span></div>
+                        <div><strong>Fecha Emisión:</strong> {{invoiceInfoDto.issueDate}}</div>
+                        <div><strong>Dirección:</strong> {{invoiceInfoDto.establishmentAddress}}</div>
                     </div>
                     <div>
-                        <div><strong>Identificación:</strong> 1760013210001</div>
+                        <div><strong>Identificación:</strong> {{invoiceInfoDto.buyerIdentification}}</div>
                         <div><strong>Guía Remision:</strong></div>
                     </div>
                 </div>
@@ -159,69 +171,77 @@
                     <div>
                         <strong>Información Adicional</strong>
                     </div>
-                    <div class="row">
-                        <div class="col-5">Dirección</div>
-                        <div class="col-7">Salinas y Santiago 123456789</div>
+                    {{#each invoiceAdditionalDetailsDto}}
+                    <div style="display: flex;">
+                        <div class="col-5">{{name}}</div>
+                        <div class="col-7">&nbsp; {{value}}</div>
                     </div>
-                    <div class="row">
-                        <div class="col-5">Email</div>
-                        <div class="col-7">pruebassri@hotmail.com</div>
-                    </div>
+                    {{/each}}
                 </div>
                 <div>
                     <table class="table table-bordered">
                         <tr>
                             <td>Forma de Pago</td>
                             <td>Valor</td>
+                            <td>Plazo</td>
+                            <td>Tiempo</td>
                         </tr>
+                        {{#each invoiceInfoDto.payments}}
                         <tr>
-                            <td>Sin utilizacion</td>
-                            <td>0.00</td>
+                            <td>{{paymentMethod}}</td>
+                            <td>{{total}}</td>
+                            <td>{{term}}</td>
+                            <td>{{timeUnit}}</td>
                         </tr>
+                        {{/each}}
                     </table>
                 </div>
             </div>
             <div style="flex: 1 1 auto;align-content: space-between;display: flex;flex-flow: column;justify-content: space-between;">
                 <table class="table table-bordered mb-2">
                     <tr>
-                        <td>SUBTOTAL 12%</td>
-                        <td>0.00</td>
+                        <td>SUBTOTAL IVA 15%</td>
+                        <td>{{invoiceInfoDto.totalWithoutTaxes}}</td>
                     </tr>
                     <tr>
                         <td>SUBTOTAL 0%</td>
-                        <td>0.00</td>
+                        <td>{{invoiceInfoDto.totalTaxesCodeCero}}</td>
                     </tr>
                     <tr>
                         <td>SUBTOTAL NO OBJETO IVA</td>
-                        <td>0.00</td>
+                        <td>{{invoiceInfoDto.totalTaxesCodeSix}}</td>
                     </tr>
                     <tr>
                         <td>SUBTOTAL EXENTO IVA</td>
-                        <td>0.00</td>
+                        <td>{{invoiceInfoDto.totalTaxesCodeSeven}}</td>
                     </tr>
                     <tr>
                         <td>SUBTOTAL SIN IMPUESTOS</td>
-                        <td>0.00</td>
+                        <td>{{invoiceInfoDto.totalWithoutTaxes}}</td>
                     </tr>
                     <tr>
                         <td>DESCUENTO</td>
-                        <td>0.00</td>
+                        <td>{{invoiceInfoDto.totalDiscount}}</td>
                     </tr>
                     <tr>
                         <td>ICE</td>
-                        <td>0.00</td>
+                        <td>{{invoiceInfoDto.totalIce}}</td>
                     </tr>
                     <tr>
-                        <td>IVA 12%</td>
-                        <td>0.00</td>
+                        <td>IVA 15%</td>
+                        <td>{{invoiceInfoDto.totalTaxesCodeFour}}</td>
+                    </tr>
+                    <tr>
+                        <td>IRBPNR</td>
+                        <td>{{invoiceInfoDto.totalIrbpnr}}</td>
                     </tr>
                     <tr>
                         <td>PROPINA</td>
-                        <td>0.00</td>
+                        <td>{{invoiceInfoDto.tip}}</td>
                     </tr>
                     <tr>
                         <td>VALOR TOTAL</td>
-                        <td>0.00</td>
+                        <td>{{invoiceInfoDto.totalAmount}}</td>
                     </tr>
                 </table>
                 <div class="border-pdf px-2">
@@ -254,7 +274,8 @@
 <footer>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
     <script>
-        JsBarcode("#barcode", "1509201701176001321000110012220000010341234567811",{
+        const accessKey = document.getElementsByClassName('authNumber')[0].innerText;
+        JsBarcode("#barcode", accessKey ,{
             height: 60,
             width: 2,
             fontSize:20

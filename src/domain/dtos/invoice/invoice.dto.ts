@@ -9,6 +9,7 @@ import WithHoldingDto from "./withHolding.dto"
 export default class InvoiceDto {
     constructor(
         public uuid: string,
+        public approvalDate: string,
         public financialInformationDto: FinancialInformationDto,
         public invoiceInfoDto: InvoiceInfoDto,
         public detailsDto: DetailDto[],
@@ -18,7 +19,7 @@ export default class InvoiceDto {
     ) {}
 
     static create(object:{[key:string]:any}): [string?, InvoiceDto?] {
-        const {uuid, financialInformation, invoiceInfo, details, reimbursements, withholdings, additionalDetails} = object
+        const {uuid, approvalDate, financialInformation, invoiceInfo, details, reimbursements, withholdings, additionalDetails} = object
 
         const [errorFinancialInformationDto, financialInformationDto] = FinancialInformationDto.save(financialInformation)
         if (errorFinancialInformationDto) return [errorFinancialInformationDto, undefined]
@@ -65,6 +66,7 @@ export default class InvoiceDto {
             undefined,
             new InvoiceDto(
                 uuid,
+                approvalDate,
                 financialInformationDto!,
                 invoiceInfoDto!,
                 detailsDto,
@@ -76,7 +78,7 @@ export default class InvoiceDto {
     }
 
     static save(object:{[key:string]:any}): [string?, InvoiceDto?] {
-        const {uuid, financialInformation, invoiceInfo, details, reimbursements, withHoldings, invoiceAdditionalDetails} = object
+        const {uuid, approvalDate, financialInformation, invoiceInfo, details, reimbursements, withHoldings, invoiceAdditionalDetails} = object
 
         const [errorFinancialInformationDto, financialInformationDto] = FinancialInformationDto.save(financialInformation)
         if (errorFinancialInformationDto) return [errorFinancialInformationDto, undefined]
@@ -122,6 +124,7 @@ export default class InvoiceDto {
             undefined,
             new InvoiceDto(
                 uuid,
+                approvalDate,
                 financialInformationDto!,
                 invoiceInfoDto!,
                 detailsDto,

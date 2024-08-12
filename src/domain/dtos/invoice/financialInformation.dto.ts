@@ -1,7 +1,7 @@
 export default class FinancialInformationDto {
     constructor(
-        public environment: number,
-        public issueType: number,
+        public environment: string,
+        public issueType: string,
         public businessName: string,
         public tradeName: string,
         public taxId: string,
@@ -69,7 +69,7 @@ export default class FinancialInformationDto {
             rimpeTaxpayer
         } = object        
 
-        if (!environment) return ['Environment is required', undefined]
+        
         if (!issueType) return ['Issue type is required', undefined]
         if (!businessName) return ['Business name is required', undefined]
         if (!tradeName) return ['Trade name is required', undefined]

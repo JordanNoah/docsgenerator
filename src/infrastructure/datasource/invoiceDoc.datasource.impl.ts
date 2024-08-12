@@ -8,6 +8,7 @@ import { v4 } from "uuid"
 import { XMLBuilder } from "fast-xml-parser"
 import htmlpdfnode from 'html-pdf-node'
 import handlebars from 'handlebars'
+import InvoiceXmlDto from "../../domain/dtos/xml/invoice-xml.dto";
 
 export default class InvoiceDocDatasourceImpl extends InvoiceDocDatasource {
     async createInvoiceDocs(invoiceDto: InvoiceDto): Promise<DocumentEntity[]> {
@@ -27,26 +28,27 @@ export default class InvoiceDocDatasourceImpl extends InvoiceDocDatasource {
             fs.unlinkSync(filePath);
         }        
     }
-    async createInvoceXml(invoiceDto: InvoiceDto): Promise<DocumentEntity> {
+    async createInvoceXml(invoiceDto: InvoiceDto): Promise<DocumentEntity> {       
+        const [error, invoiceXmlDto] = InvoiceXmlDto.create(invoiceDto)
+
         let dir = await new Fs().completeWork(invoiceDto.uuid)
         let docname = v4();
-        const builder = new XMLBuilder({
-            arrayNodeName: "invoice"
-        })
+        const builder = new XMLBuilder()
 
         // Genera el contenido XML
         const xmlContent = `<?xml version="1.0"?>
-        <catalog>
-          ${builder.build(invoiceDto)}
-        </catalog>`;
+            <factura id="comprobante" version="1.1.0">
+                ${builder.build(invoiceXmlDto!)}
+            </factura>
+        `;
 
         fs.writeFile(`${dir}/${docname}.xml`, xmlContent, (err) => {
             if (err) throw err;
         });
-        return new DocumentEntity("xml", `http://localhost:3000/api/docs/xml/${invoiceDto.uuid}/${docname}.xml`)
+        return new DocumentEntity("xml", `http://localhost:3031/api/docs/xml/${invoiceDto.uuid}/${docname}.xml`)
     }
     async createInvoicePdf(invoiceDto: InvoiceDto): Promise<DocumentEntity> {
-        try {
+        try {            
             let dir = await new Fs().completeWork(invoiceDto.uuid)
             let docname = v4();
 
@@ -54,9 +56,7 @@ export default class InvoiceDocDatasourceImpl extends InvoiceDocDatasource {
 
             const invoiceDoc = fs.readFileSync(templatePath, 'utf8');
             
-            // Compilar la plantilla con Handlebars
             const template = handlebars.compile(invoiceDoc);
-            console.log(invoiceDto.detailsDto);
             
             const html = template(invoiceDto);
                
